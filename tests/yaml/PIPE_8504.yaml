@@ -1,0 +1,40 @@
+pipelines:
+  - name: test
+    steps:
+      - name: test1
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+      - name: test2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: test1
+        execution:
+          onExecute:
+            - sleep 5m
+      - name: test3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: test2
+        execution:
+          onExecute:
+            - printenv
+      - name: test4
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: test3
+        execution:
+          onExecute:
+            - printenv
+      - name: test5
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: test4
+        execution:
+          onExecute:
+            - printenv
